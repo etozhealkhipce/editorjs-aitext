@@ -2,6 +2,7 @@
   "name": "@alkhipce/editorjs-aitext",
   "version": "1.0.0",
   "description": "Open AI text tool for Editor.js",
+  "private": false,
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -14,6 +15,10 @@
   "files": [
     "dist"
   ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
   "main": "./dist/paragraph.umd.js",
   "module": "./dist/paragraph.mjs",
   "exports": {
