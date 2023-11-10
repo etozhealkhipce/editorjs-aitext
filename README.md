@@ -3,7 +3,13 @@
 
 # AI Text Tool for Editor.js
 
-AI suggestion text Tool for the [Editor.js](https://ifmo.su/editor) based on the default [Paragraph Tool](https://github.com/editor-js/paragraph/tree/master) and [OpenAI Node.js library](https://github.com/openai/openai-node)
+AI suggestion text Tool for the [Editor.js](https://ifmo.su/editor) based on the default [Paragraph Tool](https://github.com/editor-js/paragraph/tree/master) and [OpenAI Node.js library](https://github.com/openai/openai-node).
+
+While writing with this tool you will get some OpenAI suggestion after 2 seconds delay. You can accept or decline it.
+
+Bindings:
+Accept suggestion: 'Right or Left ALT buttons'
+Decline suggestion: 'Backspace or ESP buttons'
 
 ## Installation
 
