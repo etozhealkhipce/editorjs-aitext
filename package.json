@@ -1,0 +1,44 @@
+{
+  "name": "editorjs-aitext",
+  "version": "1.0.0",
+  "description": "Open AI text tool for Editor.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/etozhealkhipce/editorjs-aitext.git"
+  },
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/paragraph.umd.js",
+  "module": "./dist/paragraph.mjs",
+  "exports": {
+    ".": {
+      "import": "./dist/aitext.mjs",
+      "require": "./dist/aitext.umd.js"
+    }
+  },
+  "keywords": [
+    "editorjs",
+    "openai",
+    "chatgpt",
+    "paragraph"
+  ],
+  "author": "alkhipce | Dyomin Ilya",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/etozhealkhipce/editorjs-aitext/issues"
+  },
+  "homepage": "https://github.com/etozhealkhipce/editorjs-aitext#readme",
+  "dependencies": {
+    "@editorjs/paragraph": "^2.11.3",
+    "openai": "^4.17.3"
+  },
+  "devDependencies": {
+    "vite": "^4.5.0"
+  }
+}
