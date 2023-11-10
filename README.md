@@ -7,8 +7,10 @@ AI suggestion text Tool for the [Editor.js](https://ifmo.su/editor) based on the
 
 While writing with this tool you will get some OpenAI suggestion after 2 seconds delay. You can accept or decline it.
 
+![image](https://github.com/etozhealkhipce/editorjs-aitext/assets/38625168/ebedb41d-085c-4046-af02-d498babf6395)
+
 Bindings:
-Accept suggestion: 'Right or Left ALT buttons'
+Accept suggestion: 'Right or Left ALT buttons'__
 Decline suggestion: 'Backspace or ESP buttons'
 
 ## Installation
