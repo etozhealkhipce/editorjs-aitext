@@ -1,5 +1,5 @@
 {
-  "name": "editorjs-aitext",
+  "name": "@alkhipce/editorjs-aitext",
   "version": "1.0.0",
   "description": "Open AI text tool for Editor.js",
   "scripts": {
