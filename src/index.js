@@ -23,8 +23,13 @@ class AIText extends Paragraph {
     }
   }
 
-  constructor(config) {
-    super(config)
+  constructor({ api, block, config, data }) {
+    super({
+      api,
+      block,
+      config,
+      data
+    })
 
     if (!config.openaiKey) {
       throw new Error('OpenAI key is required for AI Text')
@@ -53,9 +58,24 @@ class AIText extends Paragraph {
     loaderElement.style.color = 'lightgray'
     loaderElement.style.position = 'absolute'
 
+    loaderElement.animate(
+      [
+        {
+          transform: 'rotate(0deg)'
+        },
+        {
+          transform: 'rotate(360deg)'
+        }
+      ],
+      {
+        duration: 2000,
+        iterations: Infinity
+      }
+    )
+
     this._element.appendChild(loaderElement)
 
-    openai.chat.completions
+    this.openai.chat.completions
       .create({
         messages: [
           {

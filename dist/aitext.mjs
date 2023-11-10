@@ -2435,16 +2435,22 @@ function vn(n, e = 2e3) {
   };
 }
 class Un extends ht {
-  constructor(t) {
-    super(t);
+  constructor({ api: t, block: s, config: r, data: i }) {
+    console.log(r);
+    super({
+      api: t,
+      block: s,
+      config: r,
+      data: i
+    });
     Be(this, "openai");
     Be(this, "onInput", vn((t) => {
       this._element.querySelector("#ai-suggestions") || t.inputType === "deleteContentBackward" || t.inputType === "deleteContentForward" || t.inputType === "insertParagraph" || t.inputType === "insertFromPaste" || t.inputType === "insertFromDrop" || !t.target.innerHTML || this.getAICompletion(t.target.innerHTML);
     }));
-    if (!t.openaiKey)
+    if (!r.openaiKey)
       throw new Error("OpenAI key is required for AI Text");
     this.openai = new $n({
-      apiKey: t.openaiKey,
+      apiKey: r.openaiKey,
       dangerouslyAllowBrowser: !0
     });
   }
@@ -2462,7 +2468,20 @@ class Un extends ht {
     const s = document.createElement("div");
     s.innerHTML = `<svg width="800px" height="800px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M12 2.99988V5.99988M12 20.9999V17.9999M4.20577 16.4999L6.80385 14.9999M21 11.9999H18M16.5 19.7941L15 17.196M3 11.9999H6M7.5 4.20565L9 6.80373M7.5 19.7941L9 17.196M19.7942 16.4999L17.1962 14.9999M4.20577 7.49988L6.80385 8.99988" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>`, s.id = "ai-suggestions-loader", s.style.display = "inline-flex", s.style.alignItems = "center", s.style.width = "24px", s.style.height = "24px", s.style.paddingLeft = "4px", s.style.color = "lightgray", s.style.position = "absolute", this._element.appendChild(s), openai.chat.completions.create({
+    </svg>`, s.id = "ai-suggestions-loader", s.style.display = "inline-flex", s.style.alignItems = "center", s.style.width = "24px", s.style.height = "24px", s.style.paddingLeft = "4px", s.style.color = "lightgray", s.style.position = "absolute", s.animate(
+      [
+        {
+          transform: "rotate(0deg)"
+        },
+        {
+          transform: "rotate(360deg)"
+        }
+      ],
+      {
+        duration: 2e3,
+        iterations: 1 / 0
+      }
+    ), this._element.appendChild(s), this.openai.chat.completions.create({
       messages: [
         {
           role: "user",
