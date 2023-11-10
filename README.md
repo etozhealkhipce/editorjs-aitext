@@ -9,8 +9,8 @@ While writing with this tool you will get some OpenAI suggestion after 2 seconds
 
 ![image](https://github.com/etozhealkhipce/editorjs-aitext/assets/38625168/ebedb41d-085c-4046-af02-d498babf6395)
 
-Bindings:
-Accept suggestion: 'Right or Left ALT buttons'__
+## Bindings:
+Accept suggestion: 'Right or Left ALT buttons',
 Decline suggestion: 'Backspace or ESP buttons'
 
 ## Installation
