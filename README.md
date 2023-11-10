@@ -1,5 +1,5 @@
 [![](https://flat.badgen.net/npm/v/@alkhipce/editorjs-aitext?icon=npm)](https://www.npmjs.com/package/@alkhipce/editorjs-aitext)
-[![](https://flat.badgen.net/github/stars/etozhealkhipce/@alkhipce/editorjs-aitext)](https://github.com/etozhealkhipce/@alkhipce/editorjs-aitext)
+[![](https://flat.badgen.net/github/stars/etozhealkhipce/editorjs-aitext)](https://github.com/etozhealkhipce/editorjs-aitext)
 
 # AI Text Tool for Editor.js
 
