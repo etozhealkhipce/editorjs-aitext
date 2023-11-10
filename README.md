@@ -74,3 +74,8 @@ The AI Text Tool supports these configuration parameters:
   }
 }
 ```
+
+## Roadmap
+1. Add types
+2. Add styles file
+3. Improve loader icon
