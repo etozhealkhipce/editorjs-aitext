@@ -11,7 +11,7 @@ While writing with this tool you will get some OpenAI suggestion after 2 seconds
 
 ## Bindings:
 Accept suggestion: 'Right or Left ALT buttons'<br>
-Decline suggestion: 'Backspace or ESP buttons'
+Decline suggestion: 'Backspace or ESC buttons'
 
 ## Installation
 
