@@ -1,6 +1,6 @@
 {
   "name": "@alkhipce/editorjs-aitext",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Open AI text tool for Editor.js",
   "private": false,
   "scripts": {
@@ -19,8 +19,8 @@
     "access": "public",
     "registry": "https://registry.npmjs.org/"
   },
-  "main": "./dist/paragraph.umd.js",
-  "module": "./dist/paragraph.mjs",
+  "main": "./dist/aitext.umd.js",
+  "module": "./dist/aitext.mjs",
   "exports": {
     ".": {
       "import": "./dist/aitext.mjs",
