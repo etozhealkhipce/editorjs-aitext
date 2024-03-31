@@ -1,29 +1,33 @@
-import OpenAI from 'openai'
 import Paragraph from '@editorjs/paragraph'
-
-function debounce(func, timeout = 2000) {
-  let timer
-  return (...args) => {
-    clearTimeout(timer)
-    timer = setTimeout(() => {
-      func.apply(this, args)
-    }, timeout)
-  }
-}
+import {
+  TAITextApi,
+  TAITextCSS,
+  TAITextCallback,
+  TAITextConstructor,
+  TAITextData,
+  TAITextElement,
+  TAITextReadOnly
+} from '../aitext'
+import { debounce } from './lib'
 
 class AIText extends Paragraph {
-  openai
+  private callback: TAITextCallback
+  private _element: TAITextElement
+  private _CSS: TAITextCSS
+  private _data: TAITextData
+  private readOnly: TAITextReadOnly = false
+  private api: TAITextApi
 
   static get toolbox() {
     return {
-      title: 'AI TEXT (experimental)',
+      title: 'AI TEXT',
       icon: `<svg width="800px" height="800px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M8 4V20M17 12V20M6 20H10M15 20H19M13 7V4H3V7M21 14V12H13V14" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>`
     }
   }
 
-  constructor({ api, block, config, data }) {
+  constructor({ api, block, config, data }: TAITextConstructor) {
     super({
       api,
       block,
@@ -31,17 +35,14 @@ class AIText extends Paragraph {
       data
     })
 
-    if (!config.openaiKey) {
-      throw new Error('OpenAI key is required for AI Text')
+    if (!config.callback) {
+      throw new Error('Callback function is required!')
     }
 
-    this.openai = new OpenAI({
-      apiKey: config.openaiKey,
-      dangerouslyAllowBrowser: true
-    })
+    this.callback = config.callback
   }
 
-  getAICompletion(content) {
+  getAICompletion(content: string) {
     if (!content) return
 
     const loaderElement = document.createElement('div')
@@ -73,39 +74,28 @@ class AIText extends Paragraph {
       }
     )
 
-    this._element.appendChild(loaderElement)
+    this._element?.appendChild(loaderElement)
 
-    this.openai.chat.completions
-      .create({
-        messages: [
-          {
-            role: 'user',
-            content: `Behave yourself as a professional journalist and finish this text in similar style: ${
-              content.length > 100
-                ? content
-                : content.slice(content.length - 100)
-            }`
-          }
-        ],
-        max_tokens: 256,
-        model: 'gpt-3.5-turbo'
-      })
+    this.callback?.(content)
       .then((response) => {
         const aiSuggestions = document.createElement('span')
         aiSuggestions.innerHTML = ''
         aiSuggestions.id = 'ai-suggestions'
         aiSuggestions.style.color = 'lightgray'
-        aiSuggestions.innerHTML = response.choices[0].message.content
+        aiSuggestions.innerHTML = response
 
-        this._element.appendChild(aiSuggestions)
+        this._element?.appendChild(aiSuggestions)
 
-        this._element.querySelector('#ai-suggestions-loader')?.remove()
+        this._element?.querySelector('#ai-suggestions-loader')?.remove()
+      })
+      .catch((error) => {
+        throw new Error(error)
       })
   }
 
   onInput = debounce((e) => {
     if (
-      this._element.querySelector('#ai-suggestions') ||
+      this._element?.querySelector('#ai-suggestions') ||
       e.inputType === 'deleteContentBackward' ||
       e.inputType === 'deleteContentForward' ||
       e.inputType === 'insertParagraph' ||
@@ -119,15 +109,16 @@ class AIText extends Paragraph {
     this.getAICompletion(e.target.innerHTML)
   })
 
-  onKeyUp(e) {
+  onKeyUp(e: { code: string }) {
     if (e.code === 'Escape' || e.code === 'Backspace') {
-      this._element.querySelector('#ai-suggestions')?.remove()
+      this._element?.querySelector('#ai-suggestions')?.remove()
 
       return
     }
 
     if (e.code === 'AltLeft' || e.code === 'AltRight') {
-      const aiSuggestionElement = this._element.querySelector('#ai-suggestions')
+      const aiSuggestionElement =
+        this._element?.querySelector('#ai-suggestions')
       const aiSuggestionElementTextContent = aiSuggestionElement?.textContent
 
       if (!aiSuggestionElementTextContent) return
@@ -136,13 +127,13 @@ class AIText extends Paragraph {
         aiSuggestionElementTextContent
       )
 
-      this._element.appendChild(aiSuggestionTextNode)
+      this._element?.appendChild(aiSuggestionTextNode)
       aiSuggestionElement.remove()
 
       return
     }
 
-    if (e.code !== 'Backspace' && e.code !== 'Delete') {
+    if ((e.code !== 'Backspace' && e.code !== 'Delete') || !this._element) {
       return
     }
 
@@ -157,7 +148,7 @@ class AIText extends Paragraph {
     const div = document.createElement('DIV')
 
     div.classList.add(this._CSS.wrapper, this._CSS.block)
-    div.contentEditable = false
+    div.contentEditable = 'false'
     div.dataset.placeholder = this.api.i18n.t(this._placeholder)
 
     if (this._data.text) {
@@ -165,12 +156,16 @@ class AIText extends Paragraph {
     }
 
     if (!this.readOnly) {
-      div.contentEditable = true
+      div.contentEditable = 'true'
       div.addEventListener('keyup', this.onKeyUp)
       div.addEventListener('input', this.onInput)
     }
 
     return div
+  }
+
+  private _placeholder(_placeholder: any): string | undefined {
+    throw new Error('Method not implemented.')
   }
 }
 
