@@ -8,6 +8,7 @@
     "build": "vite build",
     "preview": "vite preview"
   },
+  "types": "./aitext.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/etozhealkhipce/editorjs-aitext.git"
@@ -40,8 +41,7 @@
   },
   "homepage": "https://github.com/etozhealkhipce/editorjs-aitext#readme",
   "dependencies": {
-    "@editorjs/paragraph": "^2.11.3",
-    "openai": "^4.17.3"
+    "@editorjs/paragraph": "^2.11.3"
   },
   "devDependencies": {
     "vite": "^4.5.0"
