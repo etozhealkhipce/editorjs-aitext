@@ -9,7 +9,7 @@ While writing, you get an AI suggestion after a configurable delay. Accept or de
 
 ![image](https://github.com/etozhealkhipce/editorjs-aitext/assets/38625168/ebedb41d-085c-4046-af02-d498babf6395)
 
-> Using an older version? See the [1.2.0 readme](https://github.com/etozhealkhipce/editorjs-aitext/blob/d0cf725/README.md).
+> Using an older version? See the [1.2.0 readme](https://github.com/etozhealkhipce/editorjs-aitext/tree/79f111fe7eec2c0458f8c508d34858bfade5efeb).
 
 ## Installation
 
