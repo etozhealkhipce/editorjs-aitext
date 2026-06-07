@@ -1,14 +1,14 @@
 (function() {
   try {
     if (typeof document < "u") {
-      var s = document.createElement("style");
-      s.appendChild(document.createTextNode(".ce-paragraph{line-height:1.6em;outline:none}.ce-paragraph[data-placeholder]:empty:before{content:attr(data-placeholder);color:#707684;font-weight:400;opacity:0}.codex-editor--empty .ce-block:first-child .ce-paragraph[data-placeholder]:empty:before{opacity:1}.codex-editor--toolbox-opened .ce-block:first-child .ce-paragraph[data-placeholder]:empty:before,.codex-editor--empty .ce-block:first-child .ce-paragraph[data-placeholder]:empty:focus:before{opacity:0}.ce-paragraph p:first-of-type{margin-top:0}.ce-paragraph p:last-of-type{margin-bottom:0}")), document.head.appendChild(s);
+      var c = document.createElement("style");
+      c.appendChild(document.createTextNode(".ce-paragraph{line-height:1.6em;outline:none}.ce-paragraph[data-placeholder]:empty:before{content:attr(data-placeholder);color:#707684;font-weight:400;opacity:0}.codex-editor--empty .ce-block:first-child .ce-paragraph[data-placeholder]:empty:before{opacity:1}.codex-editor--toolbox-opened .ce-block:first-child .ce-paragraph[data-placeholder]:empty:before,.codex-editor--empty .ce-block:first-child .ce-paragraph[data-placeholder]:empty:focus:before{opacity:0}.ce-paragraph p:first-of-type{margin-top:0}.ce-paragraph p:last-of-type{margin-bottom:0}")), document.head.appendChild(c);
     }
   } catch (e) {
     console.error("vite-plugin-css-injected-by-js", e);
   }
 })();
-const h = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M8 9V7.2C8 7.08954 8.08954 7 8.2 7L12 7M16 9V7.2C16 7.08954 15.9105 7 15.8 7L12 7M12 7L12 17M12 17H10M12 17H14"/></svg>';
+const m = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M8 9V7.2C8 7.08954 8.08954 7 8.2 7L12 7M16 9V7.2C16 7.08954 15.9105 7 15.8 7L12 7M12 7L12 17M12 17H10M12 17H14"/></svg>';
 /**
  * Base Paragraph Block for the Editor.js.
  * Represents a regular text block
@@ -17,7 +17,7 @@ const h = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="
  * @copyright CodeX 2018
  * @license The MIT License (MIT)
  */
-class c {
+class h {
   /**
    * Default placeholder for Paragraph Tool
    *
@@ -36,11 +36,11 @@ class c {
    * @param {object} params.api - editor.js api
    * @param {boolean} readOnly - read only mode flag
    */
-  constructor({ data: e, config: t, api: i, readOnly: a }) {
-    this.api = i, this.readOnly = a, this._CSS = {
+  constructor({ data: e, config: t, api: i, readOnly: s }) {
+    this.api = i, this.readOnly = s, this._CSS = {
       block: this.api.styles.block,
       wrapper: "ce-paragraph"
-    }, this.readOnly || (this.onKeyUp = this.onKeyUp.bind(this)), this._placeholder = t.placeholder ? t.placeholder : c.DEFAULT_PLACEHOLDER, this._data = {}, this._element = null, this._preserveBlank = t.preserveBlank !== void 0 ? t.preserveBlank : !1, this.data = e;
+    }, this.readOnly || (this.onKeyUp = this.onKeyUp.bind(this)), this._placeholder = t.placeholder ? t.placeholder : h.DEFAULT_PLACEHOLDER, this._data = {}, this._element = null, this._preserveBlank = t.preserveBlank !== void 0 ? t.preserveBlank : !1, this.data = e;
   }
   /**
    * Check if text content is empty and set empty string to inner html.
@@ -198,49 +198,70 @@ class c {
    */
   static get toolbox() {
     return {
-      icon: h,
+      icon: m,
       title: "Text"
     };
   }
 }
-function p(s, e = 2e3) {
+function y(c, e = 2e3) {
   let t;
   return (...i) => {
     clearTimeout(t), t = setTimeout(() => {
-      s.apply(null, i);
+      c.apply(null, i);
     }, e);
   };
 }
-class u extends c {
-  constructor({ api: e, block: t, config: i, data: a }) {
+const p = `<svg width="800px" height="800px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M8 4V20M17 12V20M6 20H10M15 20H19M13 7V4H3V7M21 14V12H13V14" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>`, g = `<svg width="800px" height="800px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M12 2.99988V5.99988M12 20.9999V17.9999M4.20577 16.4999L6.80385 14.9999M21 11.9999H18M16.5 19.7941L15 17.196M3 11.9999H6M7.5 4.20565L9 6.80373M7.5 19.7941L9 17.196M19.7942 16.4999L17.1962 14.9999M4.20577 7.49988L6.80385 8.99988" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>`, u = class d extends h {
+  constructor({ api: e, block: t, config: i, data: s }) {
     if (super({
       api: e,
       block: t,
       config: i,
-      data: a
-    }), this.readOnly = !1, this.onInput = p((n) => {
-      var r;
-      console.log(n.target.innerHTML), !((r = this._element) != null && r.querySelector("#ai-suggestions") || n.inputType === "deleteContentBackward" || n.inputType === "deleteContentForward" || n.inputType === "insertParagraph" || n.inputType === "insertFromPaste" || n.inputType === "insertFromDrop" || !n.target.innerHTML) && this.getAICompletion(n.target.innerHTML);
-    }), !i.callback)
+      data: s
+    }), this.readOnly = !1, this.onKeyDown = (n) => {
+      var a;
+      if (!this.isAcceptKey(n.code))
+        return;
+      const r = (a = this._element) == null ? void 0 : a.querySelector("#ai-suggestions");
+      r != null && r.textContent && (n.preventDefault(), n.stopPropagation(), this.applySuggestion(r));
+    }, this.onKeyUp = (n) => {
+      var a, l;
+      if (this.isDeclineKey(n.code) || n.code === "Backspace") {
+        (l = (a = this._element) == null ? void 0 : a.querySelector("#ai-suggestions")) == null || l.remove();
+        return;
+      }
+      if (n.code !== "Backspace" && n.code !== "Delete" || !this._element)
+        return;
+      const { textContent: r } = this._element;
+      r === "" && (this._element.innerHTML = "");
+    }, !i.callback)
       throw new Error("Callback function is required!");
-    this.callback = i.callback;
+    this.callback = i.callback, this.acceptKeys = i.acceptKeys ?? ["AltLeft", "AltRight", "Tab"], this.declineKeys = i.declineKeys ?? ["Escape", "Backspace"], this.debounceTimeout = i.debounceTimeout ?? 2e3;
+    const o = this.acceptKeys.filter((n) => this.declineKeys.includes(n));
+    o.length && console.warn(`AIText: keys [${o.join(", ")}] are in both acceptKeys and declineKeys`), this.loaderIcon = i.loaderIcon ?? g, d._icon = i.icon ?? p, this.onInput = y((n) => {
+      var r;
+      (r = this._element) != null && r.querySelector("#ai-suggestions") || n.inputType === "deleteContentBackward" || n.inputType === "deleteContentForward" || n.inputType === "insertParagraph" || n.inputType === "insertFromPaste" || n.inputType === "insertFromDrop" || !n.target.innerHTML || this.getAICompletion(n.target.innerHTML);
+    }, this.debounceTimeout);
   }
   static get toolbox() {
     return {
       title: "AI TEXT",
-      icon: `<svg width="800px" height="800px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M8 4V20M17 12V20M6 20H10M15 20H19M13 7V4H3V7M21 14V12H13V14" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>`
+      icon: d._icon
     };
   }
+  static prepare({ config: e }) {
+    e != null && e.icon && (d._icon = e.icon);
+  }
   getAICompletion(e) {
-    var i, a;
+    var i, s;
     if (!e)
       return;
     const t = document.createElement("div");
-    t.innerHTML = `<svg width="800px" height="800px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M12 2.99988V5.99988M12 20.9999V17.9999M4.20577 16.4999L6.80385 14.9999M21 11.9999H18M16.5 19.7941L15 17.196M3 11.9999H6M7.5 4.20565L9 6.80373M7.5 19.7941L9 17.196M19.7942 16.4999L17.1962 14.9999M4.20577 7.49988L6.80385 8.99988" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>`, t.id = "ai-suggestions-loader", t.style.display = "inline-flex", t.style.alignItems = "center", t.style.width = "24px", t.style.height = "24px", t.style.paddingLeft = "4px", t.style.color = "lightgray", t.style.position = "absolute", t.animate(
+    t.innerHTML = this.loaderIcon, t.id = "ai-suggestions-loader", t.style.display = "inline-flex", t.style.alignItems = "center", t.style.width = "24px", t.style.height = "24px", t.style.paddingLeft = "4px", t.style.color = "lightgray", t.style.position = "absolute", t.animate(
       [
         {
           transform: "rotate(0deg)"
@@ -253,44 +274,41 @@ class u extends c {
         duration: 2e3,
         iterations: 1 / 0
       }
-    ), (i = this._element) == null || i.appendChild(t), (a = this.callback) == null || a.call(this, e).then((n) => {
-      var o, l, d;
-      console.log(n);
-      const r = document.createElement("span");
-      r.innerHTML = "", r.id = "ai-suggestions", r.style.color = "lightgray", r.innerHTML = n, (o = this._element) == null || o.appendChild(r), (d = (l = this._element) == null ? void 0 : l.querySelector("#ai-suggestions-loader")) == null || d.remove();
-    }).catch((n) => {
-      throw new Error(n);
+    ), (i = this._element) == null || i.appendChild(t), (s = this.callback) == null || s.call(this, e).then((o) => {
+      var r, a, l;
+      const n = document.createElement("span");
+      n.innerHTML = "", n.id = "ai-suggestions", n.style.color = "lightgray", n.innerHTML = o, (r = this._element) == null || r.appendChild(n), (l = (a = this._element) == null ? void 0 : a.querySelector("#ai-suggestions-loader")) == null || l.remove();
+    }).catch((o) => {
+      throw new Error(o);
     });
   }
-  onKeyUp(e) {
-    var i, a, n, r;
-    if (e.code === "Escape" || e.code === "Backspace") {
-      (a = (i = this._element) == null ? void 0 : i.querySelector("#ai-suggestions")) == null || a.remove();
+  isAcceptKey(e) {
+    return this.acceptKeys.includes(e);
+  }
+  isDeclineKey(e) {
+    return this.declineKeys.includes(e);
+  }
+  applySuggestion(e) {
+    var i;
+    const t = e.textContent;
+    t && ((i = this._element) == null || i.appendChild(document.createTextNode(t)), e.remove(), this.moveCursorToEnd());
+  }
+  moveCursorToEnd() {
+    if (!this._element)
       return;
-    }
-    if (e.code === "AltLeft" || e.code === "AltRight") {
-      const o = (n = this._element) == null ? void 0 : n.querySelector("#ai-suggestions"), l = o == null ? void 0 : o.textContent;
-      if (!l)
-        return;
-      const d = document.createTextNode(
-        l
-      );
-      (r = this._element) == null || r.appendChild(d), o.remove();
-      return;
-    }
-    if (e.code !== "Backspace" && e.code !== "Delete" || !this._element)
-      return;
-    const { textContent: t } = this._element;
-    t === "" && (this._element.innerHTML = "");
+    const e = document.createRange(), t = window.getSelection();
+    e.selectNodeContents(this._element), e.collapse(!1), t == null || t.removeAllRanges(), t == null || t.addRange(e);
   }
   drawView() {
     const e = document.createElement("DIV");
-    return e.classList.add(this._CSS.wrapper, this._CSS.block), e.contentEditable = "false", e.dataset.placeholder = this.api.i18n.t(this._placeholder), this._data.text && (e.innerHTML = this._data.text), this.readOnly || (e.contentEditable = "true", e.addEventListener("keyup", this.onKeyUp), e.addEventListener("input", this.onInput)), e;
+    return e.classList.add(this._CSS.wrapper, this._CSS.block), e.contentEditable = "false", e.dataset.placeholder = this.api.i18n.t(this._placeholder), this._data.text && (e.innerHTML = this._data.text), this.readOnly || (e.contentEditable = "true", e.addEventListener("keydown", this.onKeyDown), e.addEventListener("keyup", this.onKeyUp), e.addEventListener("input", this.onInput)), e;
   }
   _placeholder(e) {
     throw new Error("Method not implemented.");
   }
-}
+};
+u._icon = p;
+let x = u;
 export {
-  u as default
+  x as default
 };

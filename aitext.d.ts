@@ -45,7 +45,14 @@ export type TAITextElement = HTMLElement | null
 export type TAITextCallback = (text: string) => Promise<string>
 export type TAITextCSS = { block: string; wrapper: string }
 export type TAITextData = { text: string }
-export type TAITextConfig = { callback: TAITextCallback }
+export type TAITextConfig = {
+  callback: TAITextCallback
+  acceptKeys?: string[]
+  declineKeys?: string[]
+  debounceTimeout?: number
+  icon?: string
+  loaderIcon?: string
+}
 export type TAITextReadOnly = boolean
 export type TAITextConstructor = {
   api: TAITextApi
