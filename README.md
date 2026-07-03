@@ -3,7 +3,7 @@
 
 # AI Text Tool for Editor.js
 
-AI suggestion text Tool for the [Editor.js](https://ifmo.su/editor) based on the default [Paragraph Tool](https://github.com/editor-js/paragraph/tree/master).
+AI suggestion text Tool for the [Editor.js](https://editorjs.io/) based on the default [Paragraph Tool](https://github.com/editor-js/paragraph/tree/master).
 
 While writing, you get an AI suggestion after a configurable delay. Accept or decline it with keyboard shortcuts.
 
